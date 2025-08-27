@@ -1,0 +1,16 @@
+# Lefthook configuration file
+# https://lefthook.dev/configuration/
+
+pre-push:
+  jobs:
+    - name: build modules
+      tags:
+        - Task009
+      run: mvn install
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: checkstyle
+      run: mvn checkstyle:check
+      glob: "."

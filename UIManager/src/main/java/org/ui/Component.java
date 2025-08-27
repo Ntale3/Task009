@@ -1,35 +1,58 @@
 package org.ui;
 
-import org.database.DatabaseConnect;
+import javax.swing.JLabel;
+import java.awt.Font;
 
-import javax.swing.*;
-import java.awt.*;
-import java.sql.Connection;
+/**
+ * Utility class for creating UI components.
+ */
+public final class Component {
+    /**
+     * Default X position.
+     */
+    private static final int DEFAULT_X_POSITION = 40;
+    /**
+     * Default Width.
+     */
+    private static final int DEFAULT_WIDTH = 700;
+    /**
+     * Default Height.
+     */
+    private static final int DEFAULT_HEIGHT = 90;
+    /**
+     * Default Font Size.
+     */
+    private static final int DEFAULT_FONT_SIZE = 32;
 
-public class Component {
-   static JLabel label;
-    public static JLabel labelComponent(String labelName,int y_axis){
-        label=new JLabel(labelName);
-        label.setBounds(40,y_axis,700,90);
-        label.setFont(new Font("Tahoma", Font.BOLD, 32));
-        //label.setForeground(new Color(153,153,0));
+    /**
+     * add JLabel Component.
+     */
+    private static JLabel label;
+
+    /**
+    * Private constructor to prevent instantiation of utility class.
+    */
+    private Component() {
+        throw new UnsupportedOperationException("Utility class");
+    }
+
+
+    /**
+     * Creates a label component with specified text and y-axis position.
+     * @param labelName The text to display on the label.
+     * @param yAxis The y-coordinate position for the label.
+     * @return JLabel configured with the specified parameters.
+     */
+    public static JLabel createLabelComponent(final String labelName,
+                                              final int yAxis) {
+        label = new JLabel(labelName);
+        label.setBounds(DEFAULT_X_POSITION,
+                yAxis, DEFAULT_WIDTH,
+                DEFAULT_HEIGHT);
+        label.setFont(new Font("Tahoma",
+                Font.BOLD,
+                DEFAULT_FONT_SIZE));
+
         return label;
     }
-    //"task9_oop","postgres","NTALE1234"
-    public static final String dbname="user_Information";
-    public static final String userName="postgres";
-    public static final String password="NTALE1234";
-    public static final String tableName="user_info";
-
-    //password Comparison
-    public static boolean passwordCheck(String password,String confirmPassword){
-        if (password.equals(confirmPassword)){
-            return true;
-        }else {
-            return false;
-        }
-    }
-
-   public static final Connection conn=DatabaseConnect.dbConn(dbname,userName,password);
-
-    }
+}

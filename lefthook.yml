@@ -13,4 +13,4 @@ pre-commit:
   jobs:
     - name: checkstyle
       run: mvn checkstyle:check
-      glob: "."
+      glob: "*.java"

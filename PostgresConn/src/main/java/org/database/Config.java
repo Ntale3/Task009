@@ -1,6 +1,5 @@
 package org.database;
 
-import io.github.cdimascio.dotenv.Dotenv;
 import java.sql.Connection;
 
 /**
@@ -8,20 +7,17 @@ import java.sql.Connection;
  */
 public final class Config {
 
-    /** Dotenv instance for loading environment variables. */
-    private static final Dotenv DOTENV = Dotenv.load();
-
     /** Database name. */
-    private static final String DB_NAME = DOTENV.get("DB_NAME");
+    private static final String DB_NAME = System.getenv("DB_NAME");
 
     /** Database username. */
-    private static final String DB_USER = DOTENV.get("DB_USER");
+    private static final String DB_USER = System.getenv("DB_USER");
 
     /** Database password. */
-    private static final String DB_PASSWORD = DOTENV.get("DB_PASSWORD");
+    private static final String DB_PASSWORD = System.getenv("DB_PASSWORD");
 
     /** Database table name. */
-    private static final String DB_TABLE = DOTENV.get("DB_TABLE");
+    private static final String DB_TABLE = System.getenv("DB_TABLE");
 
     /** Database connection. */
     private static final Connection DB_CONNECTION =
